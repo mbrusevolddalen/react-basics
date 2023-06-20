@@ -8,16 +8,14 @@ export const metadata = {
   description: 'React Basics bspoke 2023',
 };
 
-export default function RootLayout({
-  children,
-}: {
+export default function RootLayout({ children }: {
   children: React.ReactNode
 }) {
   return (
 
     <html lang="en">
       <body className={inter.className}>
-        <div className="flex flex-row">
+        <div className="flex flex-row justify-center min-h-screen items-center">
           {children}
         </div>
       </body>

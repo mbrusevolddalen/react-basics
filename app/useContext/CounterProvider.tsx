@@ -1,6 +1,4 @@
-import {
-  createContext, useContext, useState, useEffect,
-} from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 
 interface CounterContextProps {
   count: number;
@@ -15,10 +13,15 @@ const useCounter = () => {
   const [count, setCount] = useState(0);
   const [isNegative, setIsNegative] = useState(false);
   const [history, setHistory] = useState<number[]>([]);
+  const [firstUpdate, setFirstUpdate] = useState(true);
 
   useEffect(() => {
-    setIsNegative(count < 0);
-    setHistory((prev) => [...prev, count]);
+    if (firstUpdate) {
+      setFirstUpdate(false);
+    } else {
+      setIsNegative(count < 0);
+      setHistory((prev) => [...prev, count]);
+    }
   }, [count]);
 
   return {
@@ -28,7 +31,6 @@ const useCounter = () => {
     setCount,
   };
 };
-
 export function CounterProvider({ children }: { children: React.ReactNode }) {
   const counter = useCounter();
   return (

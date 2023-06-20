@@ -1,36 +1,59 @@
 'use client';
 
 import Link from 'next/link';
-import useCounter from './useCounter';
+import { useState, useTransition } from 'react';
 
-function UseTransitionPage() {
-  const {
-    count, isNegative, history, increment, decrement, total, isPending,
-  } = useCounter();
+const names = [
+  'Abigail',
+  'Alexandra',
+  'Alison',
+  'Amanda',
+  'Angela',
+  'Bella',
+  'Carol',
+  'Caroline',
+  'Carolyn',
+  'Deirdre',
+  'Diana',
+  'Elizabeth',
+  'Ella',
+  'Faith',
+  'Olivia',
+  'Penelope',
+];
+
+function ListItem({ name, highlight }: { name: string; highlight: string }) {
+  const isHighlighted = highlight && name.toLowerCase().includes(highlight.toLowerCase());
 
   return (
-    <div>
-      <p>
-        Count:
-        {count}
-      </p>
-      <div>
-        <button type="button" onClick={increment}>Increase</button>
-        <button type="button" onClick={decrement}>Decrease</button>
-      </div>
-      {isNegative && <p className="bg-red-400 text-white">No negative values!</p>}
-      {isPending && <p>Loading...</p>}
-      <p>
-        Total of all counts:
-        {total}
-      </p>
-      <p>
-        History:
-        {history.join(', ')}
-      </p>
-      <Link href="/useTransition">useContext</Link>
-    </div>
+    <div>{isHighlighted ? <b>{name}</b> : name}</div>
   );
 }
 
-export default UseTransitionPage;
+function FilterList() {
+  const [query, setQuery] = useState('');
+  const [highlight, setHighlight] = useState('');
+  const [isPending, startTransition] = useTransition();
+
+  const changeHandler = (value: string) => {
+    setQuery(value);
+    startTransition(() => setHighlight(value));
+  };
+  console.log('isPending', isPending);
+  return (
+    <section>
+      <h1>useTransition</h1>
+      <div className="flex flex-col gap-4">
+        <input onChange={(e) => changeHandler(e.target.value)} value={query} type="text" />
+      </div>
+      <div>
+        {names.map((name, i) => (
+          <ListItem key={i} name={name} highlight={highlight} />
+        ))}
+      </div>
+      <Link href="/use">use</Link>
+    </section>
+  );
+}
+
+export default FilterList;

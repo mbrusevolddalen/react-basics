@@ -5,10 +5,11 @@ import Counter from './Counter';
 
 function UseMemoPage() {
   return (
-    <>
+    <section>
+      <h1>useMemo</h1>
       <Counter />
-      <Link href="useReducer" />
-    </>
+      <Link href="useReducer">useReducer</Link>
+    </section>
   );
 }
 

@@ -1,21 +1,10 @@
-import { useState } from 'react';
 import Modal from '../components/Modal';
+import useModal from '../components/Modal/useModal';
 import useCounter from './useCounter';
 
 function CounterComponent() {
-  const {
-    count, history, total, setCount,
-  } = useCounter();
-
-  const [isModalOpen, setModalOpen] = useState(false);
-
-  const openModal = () => {
-    setModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
-  };
+  const { count, history, total, setCount } = useCounter();
+  const { closeModal, isModalOpen, openModal } = useModal();
 
   return (
     <div>
@@ -23,7 +12,7 @@ function CounterComponent() {
         Count:
         {count}
       </p>
-      <div>
+      <div className="flex gap-4">
         <button type="button" onClick={() => setCount(count + 1)}>Increase</button>
         <button type="button" onClick={() => setCount(count - 1)}>Decrease</button>
         <button type="button" onClick={openModal}>Show History</button>

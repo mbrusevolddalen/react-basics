@@ -1,3 +1,5 @@
+'use client';
+
 import useCounter from './useCounter';
 import Modal from '../components/Modal';
 import useModal from '../components/Modal/useModal';

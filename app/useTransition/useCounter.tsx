@@ -1,6 +1,4 @@
-import {
-  useState, useEffect, useMemo, useTransition,
-} from 'react';
+import { useState, useEffect, useMemo, useTransition } from 'react';
 
 const useCounter = () => {
   const [count, setCount] = useState(0);
@@ -8,13 +6,9 @@ const useCounter = () => {
   const [history, setHistory] = useState<number[]>([]);
   const [isPending, startTransition] = useTransition();
 
-  const increment = () => startTransition(() => {
-    setTimeout(() => setCount((prevCount) => prevCount + 1), 1000);
-  });
+  const increment = () => startTransition(() => setCount((prevCount) => prevCount + 1));
 
-  const decrement = () => startTransition(() => {
-    setTimeout(() => setCount((prevCount) => (prevCount > 0 ? prevCount - 1 : 0)), 1000);
-  });
+  const decrement = () => startTransition(() => setCount((prevCount) => (prevCount > 0 ? prevCount - 1 : 0)));
 
   useEffect(() => {
     setIsNegative(count < 0);

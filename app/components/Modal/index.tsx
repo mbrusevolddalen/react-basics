@@ -9,11 +9,12 @@ interface ModalProps {
 
 function Modal({ children, isOpen, onClose }: ModalProps) {
   const elRef = useRef<HTMLDivElement | null>(null);
-  if (!elRef.current) {
-    elRef.current = document.createElement('div');
-  }
 
   useEffect(() => {
+    if (!elRef.current) {
+      elRef.current = document.createElement('div');
+    }
+
     const modalRoot = document.body;
     const el = elRef.current;
 
@@ -26,15 +27,14 @@ function Modal({ children, isOpen, onClose }: ModalProps) {
       modalRoot.removeChild(el);
     };
   }, []);
-
   const content = (
-    <div>
+    <div className="fixed z-10 inset-0 overflow-y-auto">
       <button type="button" onClick={onClose}>Close</button>
       {children}
     </div>
   );
 
-  return isOpen ? ReactDOM.createPortal(content, elRef.current) : null;
+  return isOpen && elRef.current ? ReactDOM.createPortal(content, elRef.current) : null;
 }
 
 export default Modal;

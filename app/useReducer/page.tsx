@@ -6,8 +6,8 @@ import useCounter from './useCounter';
 function UseContextPage() {
   const { count, isNegative, dispatch } = useCounter();
   return (
-    <div>
-      <h1>Custom hooks</h1>
+    <section>
+      <h1>useReducer</h1>
       <p>
         Count:
         {count}
@@ -17,8 +17,8 @@ function UseContextPage() {
         <button type="button" onClick={() => dispatch({ type: 'DECREMENT' })}>Decrease</button>
       </div>
       {isNegative && <p className="bg-red-400 text-white">No negative values!</p>}
-      <Link href="/useContext">useContext</Link>
-    </div>
+      <Link href="/useTransition">useTransition</Link>
+    </section>
   );
 }
 
