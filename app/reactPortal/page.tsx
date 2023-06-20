@@ -1,21 +1,12 @@
-import { useState } from 'react';
-import Modal from '../components/Modal';
 import useCounter from './useCounter';
+import Modal from '../components/Modal';
+import useModal from '../components/Modal/useModal';
 
 function CounterComponent() {
   const {
-    count, history, total, setCount,
+    count, isNegative, history, increment, decrement, total, isPending,
   } = useCounter();
-
-  const [isModalOpen, setModalOpen] = useState(false);
-
-  const openModal = () => {
-    setModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
-  };
+  const { closeModal, isModalOpen, openModal } = useModal();
 
   return (
     <div>
@@ -24,10 +15,12 @@ function CounterComponent() {
         {count}
       </p>
       <div>
-        <button type="button" onClick={() => setCount(count + 1)}>Increase</button>
-        <button type="button" onClick={() => setCount(count - 1)}>Decrease</button>
+        <button type="button" onClick={increment}>Increase</button>
+        <button type="button" onClick={decrement}>Decrease</button>
         <button type="button" onClick={openModal}>Show History</button>
       </div>
+      {isNegative && <p className="bg-red-400 text-white">No negative values!</p>}
+      {isPending && <p>Loading...</p>}
       <p>
         Total of all counts:
         {total}

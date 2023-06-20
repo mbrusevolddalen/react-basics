@@ -1,17 +1,15 @@
-"use client";
-import { CounterProvider } from "./CounterProvider";
-import Counter from "./Counter";
-import CounterHistory from "./CounterHistory";
-import Link from "next/link";
+'use client';
 
-const UseMemoPage = () => {
-    return (
-        <CounterProvider>
-            <Counter />
-            <CounterHistory />
-            <Link href="useReducer" />
-        </CounterProvider>
-    );
+import Link from 'next/link';
+import Counter from './Counter';
+
+function UseMemoPage() {
+  return (
+    <>
+      <Counter />
+      <Link href="useReducer" />
+    </>
+  );
 }
 
 export default UseMemoPage;

@@ -1,17 +1,20 @@
-"use client";
-import { CounterProvider } from "./CounterProvider";
-import Counter from "./Counter";
-import CounterHistory from "./CounterHistory";
-import Link from "next/link";
+'use client';
 
-const CustomHookPage = () => {
-    return (
-        <CounterProvider>
-            <Counter />
-            <CounterHistory />
-            <Link href="useMemo" />
-        </CounterProvider>
-    );
+import Link from 'next/link';
+import { CounterProvider } from './CounterProvider';
+import Counter from './Counter';
+import CounterHistory from './CounterHistory';
+
+function CustomHookPage() {
+  return (
+    <div className="flex flex-col">
+      <CounterProvider>
+        <Counter />
+        <CounterHistory />
+        <Link href="useMemo">UseMemo</Link>
+      </CounterProvider>
+    </div>
+  );
 }
 
 export default CustomHookPage;

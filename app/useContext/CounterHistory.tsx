@@ -1,19 +1,19 @@
-import { useCounterContext } from "./CounterProvider";
+import { useCounterContext } from './CounterProvider';
 
-const CounterHistory = () => {
-    const { history } = useCounterContext();
-    console.log('aaasdss')
+function CounterHistory() {
+  const { history } = useCounterContext();
 
-    return (
-        <div>
-            <h2>Counter History</h2>
-            <ul>
-                {history.map((count, index) => (
-                    <li key={index}>Count was: {count}</li>
-                ))}
-            </ul>
-        </div>
-    );
+  return (
+    <div>
+      <h2>Counter History</h2>
+      <ul className="flex">
+        Count was:
+        {history.map((count) => (
+          <li key={count}>{`${count}, `}</li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
 export default CounterHistory;

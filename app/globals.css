@@ -25,3 +25,13 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+
+@layer base {
+  button {
+    @apply border px-4 py-2 rounded-md;
+  }
+  h1 {
+    @apply text-4xl font-bold;
+  }
+}
