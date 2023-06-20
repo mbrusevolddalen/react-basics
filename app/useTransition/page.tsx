@@ -46,6 +46,7 @@ function FilterList() {
       <div className="flex flex-col gap-4">
         <input onChange={(e) => changeHandler(e.target.value)} value={query} type="text" />
       </div>
+      {isPending && <div> loading</div>}
       <div>
         {names.map((name, i) => (
           <ListItem key={i} name={name} highlight={highlight} />
